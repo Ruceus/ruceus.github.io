@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="css/master.css">
+    <meta charset="utf-8">
+    <title>Unity Guidelines - a collection by Ruceus</title>
+  </head>
+  <body>
+
+    <header class="flexContainer">
+        <h1>ruceus.github.io</h1>
+    </header>
+
+    <nav class="flexContainer">
+      <ul>
+        <li>
+          <a id="ruceus" href="index.html">Ruceus</a>
+        </li>
+        <li>
+          <a href="unityGuidelines.html">Unity Guidelines</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <article>
+        <section class="boxed">
+          <h2>Update, FixedUpdate or even LateUpdate?</h2>
+          <p>
+            This question can be really tough... I "struggled" with this for a while,
+            but with a little bit of research I found reliable resources within Unity's
+            Manual/Scripting API and forum posts. At first, let's have a look at the official
+            Documentation:
+          </p>
+          <q cite="https://docs.unity3d.com/Manual/ExecutionOrder.html#UpdateOrder">
+            Update Order
+            <br>When you’re keeping track of game logic and interactions, animations,
+            camera positions, etc., there are a few different events you can use.
+            The common pattern is to perform <b>most tasks inside the Update function</b>,
+            but there are also other functions you can use.
+            <br>
+            <br>FixedUpdate: FixedUpdate is often <b>called more frequently than Update</b>.
+            It can be called multiple times per frame, if the frame rate is low
+            and it may not be called between frames at all if the frame rate is high.
+            All physics calculations and updates occur immediately after FixedUpdate.
+            When applying movement calculations inside FixedUpdate, you do not need
+            to multiply your values by Time.deltaTime. This is because FixedUpdate
+            is called on a reliable timer, <b>independent of the frame rate</b>.
+            <br>
+            <br>Update: Update is <b>called once per frame</b>.
+            It is the main workhorse function for frame updates.
+            <br>
+            <br>LateUpdate: LateUpdate is <b>called once per frame, after Update has finished</b>.
+            Any calculations that are performed in Update will have completed when LateUpdate begins.
+            A common use for LateUpdate would be a following third-person camera.
+            If you make your character move and turn inside Update,
+            <b>you can perform all camera movement and rotation calculations in LateUpdate</b>.
+            This will ensure that the character has moved completely before the camera
+            tracks its position.
+          </q>
+          <p>
+            At first glance this can be very helpfull, although some tutorials may differ
+            their code from this recommendations. This is of course a critical point where
+            you should ask "is that -okay-?" - sure it is! Most of the time... I think so?
+            <br> Well, at least I found one good source that helped me deciding between using
+            Update and FiedUpdate:
+          </p>
+          <q cite="https://forum.unity.com/threads/solved-unity-move-with-fixedupdate-more-efficient.386937/">
+            FixedUpdate runs at fixed time intervals, referred to as fixed-time-step
+            found in edit>project settings>time. This is useful for physics since physics
+            updates using the same fixed-time-step as well. Update runs every frame.
+            This is useful for player input for its immediacy. Not sure how to give a
+            concise list on when to use what since it depends on the situation,
+            but in general you weigh between immediacy and consistency.
+          </q>
+          <p>- Laperen, Feb 19, 2016</p>
+
+        </section>
+      </article>
+
+      <article class="boxed">
+        <section>
+
+          <h2>Programming Pattern for C#</h2>
+
+          <h3>The Factory Method design pattern</h3>
+
+          <p>Here's the <a href="https://www.infoworld.com/article/3221392/how-to-use-the-object-pool-design-pattern-in-c.html">source</a>.</p>
+
+        </section>
+      </article>
+
+    </main>
+
+    <footer class="flexContainer">© Jacob Wolyniec 2019</footer>
+
+  </body>
+</html>

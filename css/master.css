@@ -15,10 +15,6 @@ h1 {
   color: #0ff;
 }
 
-h2 {
-
-}
-
 header {
   margin-bottom: 2em;
   height: 100px;
@@ -26,8 +22,6 @@ header {
   border-radius: 15px;
 }
 
-main {
-}
 
 footer {
   position: fixed;
@@ -36,6 +30,7 @@ footer {
   height: 50px;
   border-top: 1px solid white;
   border-radius: 15px;
+  background-color: #111111;
   text-align: center;
 }
 
@@ -45,6 +40,19 @@ article {
 
 p {
   line-height: 1.5;
+}
+
+q {
+  font-style: italic;
+  line-height: 1.2;
+}
+
+q::before {
+  content: ">>"
+}
+
+q::after {
+  content: "<<"
 }
 
 /* Layout */
@@ -76,6 +84,10 @@ p {
   text-align: center;
 }
 
+#fool {
+  display: none;
+}
+
 /* Link Stuff */
 
 a {
@@ -93,4 +105,9 @@ a:visited {
 
 a:visited:hover {
   color: white;
+}
+
+
+#ruceus {
+  font-weight: 600;
 }
