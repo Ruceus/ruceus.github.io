@@ -19,80 +19,163 @@
         <li>
           <a href="unityGuidelines.html">Unity Guidelines</a>
         </li>
+        <li>
+          <a href="webGuidelines.html">Website Guidelines</a>
+        </li>
+        <li>
+          <a href="blenderGuidelines.html">Blender Guidelines</a>
+        </li>
+        <li>
+          <a href="programmingWithProcessing.html">Programming with Processing</a>
+        </li>
       </ul>
     </nav>
 
-    <main>
-      <article>
-        <section class="boxed">
-          <h2>Update, FixedUpdate or even LateUpdate?</h2>
+    <main  class="boxed">
+
+      <section>
+        <h2>Unity Guidelines</h2>
+        <p>
+          When I started to work with Unity I needed a lot of tutorials, time and help
+          to reach my first goals. It's not different today, the only things changed are
+          the things I search for.
+          <br>I want to provide some things I learned about Unity on this webpage
+          to help people who struggle with similar or even the same issues as me.
+        </p>
+        <p>
+          It's also important to take note that all these things here are just some advices,
+          I'm not a professional Unity developer.
+          <br>I don't know when to call someone a professional, at least I'm not one.
+          It all comes down to experience and knowledge, so today,
+          in a time where almost everything can be found on the web,
+          everyone could become a professional Unity developer.
+          It is my claim to keep the quality of my work as high as possible.
+          And with that in mind I do the best I can to achieve what I want.
+        </p>
+        <p>
+          So let's begin and take a look around for things you want to know or that might be usefull for you.
+        </p>
+      </section>
+
+      <section>
+        <h2>Update, FixedUpdate or even LateUpdate?</h2>
+        <p>
+          This question can be really tough... I "struggled" with this for a while,
+          but with a little bit of research I found reliable resources within Unity's
+          Manual/Scripting API and forum posts. At first, let's have a look at the official
+          Documentation:
+        </p>
+        <q cite="https://docs.unity3d.com/Manual/ExecutionOrder.html#UpdateOrder">
+          Update Order
+          <br>When you’re keeping track of game logic and interactions, animations,
+          camera positions, etc., there are a few different events you can use.
+          The common pattern is to perform <b>most tasks inside the Update function</b>,
+          but there are also other functions you can use.
+          <br>
+          <br>FixedUpdate: FixedUpdate is often <b>called more frequently than Update</b>.
+          It can be called multiple times per frame, if the frame rate is low
+          and it may not be called between frames at all if the frame rate is high.
+          All physics calculations and updates occur immediately after FixedUpdate.
+          When applying movement calculations inside FixedUpdate, you do not need
+          to multiply your values by Time.deltaTime. This is because FixedUpdate
+          is called on a reliable timer, <b>independent of the frame rate</b>.
+          <br>
+          <br>Update: Update is <b>called once per frame</b>.
+          It is the main workhorse function for frame updates.
+          <br>
+          <br>LateUpdate: LateUpdate is <b>called once per frame, after Update has finished</b>.
+          Any calculations that are performed in Update will have completed when LateUpdate begins.
+          A common use for LateUpdate would be a following third-person camera.
+          If you make your character move and turn inside Update,
+          <b>you can perform all camera movement and rotation calculations in LateUpdate</b>.
+          This will ensure that the character has moved completely before the camera
+          tracks its position.
+        </q>
+        <p>
+          At first glance this can be very helpfull, although some tutorials may differ
+          their code from this recommendations. This is of course a critical point where
+          you should ask "is that -okay-?" - sure it is! Most of the time... I think so?
+          <br> Well, at least I found one good source that helped me deciding between using
+          Update and FiedUpdate:
+        </p>
+        <q cite="https://forum.unity.com/threads/solved-unity-move-with-fixedupdate-more-efficient.386937/">
+          FixedUpdate runs at fixed time intervals, referred to as fixed-time-step
+          found in edit>project settings>time. This is useful for physics since physics
+          updates using the same fixed-time-step as well. Update runs every frame.
+          This is useful for player input for its immediacy. Not sure how to give a
+          concise list on when to use what since it depends on the situation,
+          but in general you weigh between immediacy and consistency.
+        </q>
+        <p>- Laperen, Feb 19, 2016</p>
+
+      </section>
+
+      <section>
+
+        <h2>Programming Pattern for C#</h2>
+
+        <article>
+
+          <h3>The object pool design pattern</h3>
           <p>
-            This question can be really tough... I "struggled" with this for a while,
-            but with a little bit of research I found reliable resources within Unity's
-            Manual/Scripting API and forum posts. At first, let's have a look at the official
-            Documentation:
+            The object pool is used to provide a pool of objects that are often created and destroyed.
+            The pool itself is a generic class to create object instances, store unused instances and release them to be used again.
           </p>
-          <q cite="https://docs.unity3d.com/Manual/ExecutionOrder.html#UpdateOrder">
-            Update Order
-            <br>When you’re keeping track of game logic and interactions, animations,
-            camera positions, etc., there are a few different events you can use.
-            The common pattern is to perform <b>most tasks inside the Update function</b>,
-            but there are also other functions you can use.
-            <br>
-            <br>FixedUpdate: FixedUpdate is often <b>called more frequently than Update</b>.
-            It can be called multiple times per frame, if the frame rate is low
-            and it may not be called between frames at all if the frame rate is high.
-            All physics calculations and updates occur immediately after FixedUpdate.
-            When applying movement calculations inside FixedUpdate, you do not need
-            to multiply your values by Time.deltaTime. This is because FixedUpdate
-            is called on a reliable timer, <b>independent of the frame rate</b>.
-            <br>
-            <br>Update: Update is <b>called once per frame</b>.
-            It is the main workhorse function for frame updates.
-            <br>
-            <br>LateUpdate: LateUpdate is <b>called once per frame, after Update has finished</b>.
-            Any calculations that are performed in Update will have completed when LateUpdate begins.
-            A common use for LateUpdate would be a following third-person camera.
-            If you make your character move and turn inside Update,
-            <b>you can perform all camera movement and rotation calculations in LateUpdate</b>.
-            This will ensure that the character has moved completely before the camera
-            tracks its position.
-          </q>
           <p>
-            At first glance this can be very helpfull, although some tutorials may differ
-            their code from this recommendations. This is of course a critical point where
-            you should ask "is that -okay-?" - sure it is! Most of the time... I think so?
-            <br> Well, at least I found one good source that helped me deciding between using
-            Update and FiedUpdate:
+            There are several ways to extend the class/concept, but I gonna leave it here the way I use it for my game project.
+            <br>Pay attention to the <a href="https://docs.microsoft.com/de-de/dotnet/csharp/language-reference/keywords/where-generic-type-constraint">"where T : new()"</a>
+            and <a href="https://docs.microsoft.com/de-de/dotnet/api/system.collections.concurrent.concurrentbag-1.trytake?view=netframework-4.8">"TryTake(out item)"</a> parts,
+            if they look unfamiliar to you (Well, at least it looked unfamiliar to me...).
+            They are easily to understand, but check 'em out, I linked the pages (you may change the language from German to English with the slider in the top right corner).
+            You should also have a quick look at the <a href="https://docs.microsoft.com/de-de/dotnet/api/system.collections.concurrent.concurrentbag-1?view=netframework-4.8">ConcurrentBag</a>,
+            so you really don't miss a thing with that.
           </p>
-          <q cite="https://forum.unity.com/threads/solved-unity-move-with-fixedupdate-more-efficient.386937/">
-            FixedUpdate runs at fixed time intervals, referred to as fixed-time-step
-            found in edit>project settings>time. This is useful for physics since physics
-            updates using the same fixed-time-step as well. Update runs every frame.
-            This is useful for player input for its immediacy. Not sure how to give a
-            concise list on when to use what since it depends on the situation,
-            but in general you weigh between immediacy and consistency.
-          </q>
-          <p>- Laperen, Feb 19, 2016</p>
+          <pre>
+            <code>
+using System.Collections.Concurrent;
 
-        </section>
-      </article>
+public class ObjectPool<T> where T : new()
+{
+    private readonly ConcurrentBag<T> items = new ConcurrentBag<T>();
+    private int counter = 0;
 
-      <article class="boxed">
-        <section>
+    public void Release(T item)
+    {
+        items.Add(item);
+        counter++;
+    }
 
-          <h2>Programming Pattern for C#</h2>
+    // Returns an existing T object from pool or creates a new one
+    public T Get()
+    {
+        T item;
+        if (items.TryTake(out item))
+        {
+            counter--;
+            return item;
+        }
+        else
+        {
+            T obj = new T();
+            items.Add(obj);
+            counter++;
+            return obj;
+        }
+    }
+}</code>
+          </pre>
+          <p>
+            Here's the <a href="https://www.infoworld.com/article/3221392/how-to-use-the-object-pool-design-pattern-in-c.html">source</a>.
+          </p>
+        </article>
 
-          <h3>The Factory Method design pattern</h3>
-
-          <p>Here's the <a href="https://www.infoworld.com/article/3221392/how-to-use-the-object-pool-design-pattern-in-c.html">source</a>.</p>
-
-        </section>
-      </article>
+      </section>
 
     </main>
 
-    <footer class="flexContainer">© Jacob Wolyniec 2019</footer>
+    <footer class="flexContainer">
+      © Jacob Wolyniec 2019
+    </footer>
 
   </body>
 </html>

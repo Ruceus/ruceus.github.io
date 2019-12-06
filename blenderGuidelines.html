@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="css/master.css">
+    <meta charset="utf-8">
+    <title>Blender Guidelines - a collection by Ruceus</title>
+  </head>
+  <body>
+
+    <header class="flexContainer">
+        <h1>ruceus.github.io</h1>
+    </header>
+
+    <nav class="flexContainer">
+      <ul>
+        <li>
+          <a id="ruceus" href="index.html">Ruceus</a>
+        </li>
+        <li>
+          <a href="unityGuidelines.html">Unity Guidelines</a>
+        </li>
+        <li>
+          <a href="webGuidelines.html">Website Guidelines</a>
+        </li>
+        <li>
+          <a href="blenderGuidelines.html">Blender Guidelines</a>
+        </li>
+        <li>
+          <a href="programmingWithProcessing.html">Programming with Processing</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main  class="boxed">
+
+      <section>
+        <h2>Blender Guidelines</h2>
+        <p>
+          Ever had a problem with blender? #meToo
+          <br>
+          So, here's a list of problems things that helped me working with blender,
+          all this for the fresh version 2.8!
+        </p>
+      </section>
+
+      <section>
+        <h2>Weird behaviour with paste flipped keyframes</h2>
+        <p>
+          When I wanted to flip the animations for my run-cycle they were flipped totally wrong and not on x-axis.
+          This solved my issue:
+          <br>
+          <b>BTW!:</b> Always make things in blender with teh front facing the Y-axis, left and right the X-axis and Z to the top!
+        </p>
+        <p>On <a href="https://blenderartists.org">blenderartists</a> I found this solution by user Sago:</p>
+        <q cite="https://blenderartists.org/t/paste-x-flipped-pose-in-walkcycle-not-working/492572/11">
+          <li>delete all keyframes of the animation, and select all bones in Pose Mode and clear rotation (Alt+R) and position (Alt+G)</li>
+          <li>in Object mode, go to Top view (Numpad 7) and Alt+R the Armature, then rotate it 90 degrees on Z-axis (it should face front view now)</li>
+          <li>to apply rotation, press <span class="dashed">Ctrl+N</span> <span class="corrected">Ctrl+A</span> and choose Rotation</li>
+        </q>
+        <p>- Sago, November 2010</p>
+        <p>
+          It worked fine for me, even though I had to re-do all my animations. Always check your models, riggs and armature for correct positions and rotations!
+          And I didn't even had to re-rotate by 90 degrees.
+        </p>
+      </section>
+    </main>
+
+    <footer class="flexContainer">
+      © Jacob Wolyniec 2019
+    </footer>
+
+  </body>
+</html>
