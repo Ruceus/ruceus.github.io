@@ -171,6 +171,38 @@ public class ObjectPool<T> where T : new()
 
       </section>
 
+      <section>
+        <h2>OnGUI vs Canvas (and other UI components)</h2>
+        <p>
+          I will just make this one short:
+          <br>
+          Whenever you want to use on screen stuff for <b>serious implementation</b>, and not just as some kind of debugging, <b>always use the canvas</b>!
+          The <b>OnGUI function</b> is deprecated and stays in Unity for developers to <b>quickly display information ingame/at runtime</b>.
+        </p>
+        <!-- Insert picture of my field with OnGUI text -->
+        <p>
+          Here's the <a href="https://answers.unity.com/questions/1116271/efficiency-more-ongui-versus-recttransforms-on-a-c.html">source</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>Saving and Loading Data (Serialization)</h2>
+
+        <p>
+          Having persistent data outside of the editor is a thing of special importance.
+          One who has the need of it may run in some troubble. A mistake I made was to think that you can easily serialize everything as a
+          <a href="https://docs.unity3d.com/Manual/class-ScriptableObject.html">ScriptableObjects</a> in Unity.
+          Instead you needed to code some <b>serialization function</b> for your data type(s).
+          <a href="https://youtu.be/J6FfcJpbPXE">Unity Live Training</a> (YouTube, start watching at
+          <a href="https://www.youtube.com/watch?v=J6FfcJpbPXE&feature=youtu.be&t=1955">32:35</a>, if you just want to see code)
+          <br>
+          This is done with the System-library, so all Unity datatypes, such as Vector3, won't be able to be serialize, <b>*UNLESS*</b> you add a custom so called
+          <a href="https://riptutorial.com/csharp/example/14386/serialization-surrogates--implementing-iserializationsurrogate-">Serialization Surrogate</a>.
+          An <b>example of a surrogate for Vector3</b> can be found <a href="https://forum.unity.com/threads/vector3-is-not-marked-serializable.435303/">in this blogpost's answer</a>
+          by takatok from 18th August 2016.
+        </p>
+      </section>
+
     </main>
 
     <footer class="flexContainer">
